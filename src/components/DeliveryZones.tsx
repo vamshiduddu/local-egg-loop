@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Truck, CheckCircle } from "lucide-react";
@@ -7,24 +13,33 @@ import { useState } from "react";
 
 const DeliveryZones = () => {
   const [pincode, setPincode] = useState("");
-  const [checkResult, setCheckResult] = useState<'available' | 'unavailable' | null>(null);
+  const [checkResult, setCheckResult] = useState<
+    "available" | "unavailable" | null
+  >(null);
 
   const deliveryAreas = [
-    { name: "Koramangala", time: "7-9 AM", available: true },
+    { name: "Hyderabad", time: "7-9 AM", available: true },
     { name: "Indiranagar", time: "7-9 AM", available: true },
     { name: "HSR Layout", time: "8-10 AM", available: true },
     { name: "BTM Layout", time: "8-10 AM", available: true },
     { name: "Jayanagar", time: "9-11 AM", available: true },
     { name: "JP Nagar", time: "9-11 AM", available: true },
     { name: "Marathahalli", time: "Coming Soon", available: false },
-    { name: "Whitefield", time: "Coming Soon", available: false }
+    { name: "Whitefield", time: "Coming Soon", available: false },
   ];
 
   const handlePincodeCheck = () => {
     // Simulate pincode checking logic
-    const availablePincodes = ['560034', '560038', '560102', '560068', '560041', '560078'];
+    const availablePincodes = [
+      "560034",
+      "560038",
+      "560102",
+      "560068",
+      "560041",
+      "560078",
+    ];
     const isAvailable = availablePincodes.includes(pincode);
-    setCheckResult(isAvailable ? 'available' : 'unavailable');
+    setCheckResult(isAvailable ? "available" : "unavailable");
   };
 
   return (
@@ -35,7 +50,8 @@ const DeliveryZones = () => {
             Delivery Areas
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Fresh eggs delivered to your doorstep. Check if we deliver to your area.
+            Fresh eggs delivered to your doorstep. Check if we deliver to your
+            area.
           </p>
         </div>
 
@@ -62,14 +78,16 @@ const DeliveryZones = () => {
                 Check
               </Button>
             </div>
-            
+
             {checkResult && (
-              <div className={`mt-4 p-3 rounded-lg flex items-center gap-2 ${
-                checkResult === 'available' 
-                  ? 'bg-primary/10 text-primary' 
-                  : 'bg-destructive/10 text-destructive'
-              }`}>
-                {checkResult === 'available' ? (
+              <div
+                className={`mt-4 p-3 rounded-lg flex items-center gap-2 ${
+                  checkResult === "available"
+                    ? "bg-primary/10 text-primary"
+                    : "bg-destructive/10 text-destructive"
+                }`}
+              >
+                {checkResult === "available" ? (
                   <>
                     <CheckCircle className="w-5 h-5" />
                     <span>Great! We deliver to your area.</span>
@@ -88,24 +106,32 @@ const DeliveryZones = () => {
         {/* Delivery Areas Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {deliveryAreas.map((area, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className={`transition-all duration-300 hover:shadow-soft ${
-                area.available ? 'hover:scale-105' : 'opacity-75'
+                area.available ? "hover:scale-105" : "opacity-75"
               }`}
             >
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
-                  <MapPin className={`w-6 h-6 ${area.available ? 'text-primary' : 'text-muted-foreground'}`} />
+                  <MapPin
+                    className={`w-6 h-6 ${
+                      area.available ? "text-primary" : "text-muted-foreground"
+                    }`}
+                  />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{area.name}</h3>
                 <div className="flex items-center justify-center gap-1 mb-3">
                   <Clock className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">{area.time}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {area.time}
+                  </span>
                 </div>
-                <Badge 
+                <Badge
                   variant={area.available ? "default" : "secondary"}
-                  className={area.available ? "bg-primary text-primary-foreground" : ""}
+                  className={
+                    area.available ? "bg-primary text-primary-foreground" : ""
+                  }
                 >
                   {area.available ? "Available" : "Coming Soon"}
                 </Badge>
@@ -121,7 +147,8 @@ const DeliveryZones = () => {
               <Truck className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-lg mb-2">Free Delivery</h3>
               <p className="text-sm text-muted-foreground">
-                No delivery charges for all subscription orders within our service area
+                No delivery charges for all subscription orders within our
+                service area
               </p>
             </CardContent>
           </Card>
@@ -141,7 +168,8 @@ const DeliveryZones = () => {
               <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-lg mb-2">Contact-free</h3>
               <p className="text-sm text-muted-foreground">
-                Safe, hygienic delivery with SMS notifications and photo confirmations
+                Safe, hygienic delivery with SMS notifications and photo
+                confirmations
               </p>
             </CardContent>
           </Card>
